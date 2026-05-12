@@ -84,7 +84,7 @@ The runtime app is simulator-only: the Express API exposes markets, rates, oppor
    Required fix: display feed failure as an amber/red degraded state rather than as a calm empty incident list.
 
 9. Documentation was stale around live deployment and earlier scope.
-   README and old superpowers planning docs mentioned private-key deployment and the original four-asset/two-chain mandate during the audit. They have since been updated to describe simulator-only behavior, eight supported assets, and four supported chains.
+   README and old superpowers planning docs mentioned live-transaction deployment and the original four-asset/two-chain mandate during the audit. They have since been updated to describe simulator-only behavior, eight supported assets, and four supported chains.
 
    Required fix: update public-facing docs before sharing the proposal to avoid confusing the simulator boundary.
 

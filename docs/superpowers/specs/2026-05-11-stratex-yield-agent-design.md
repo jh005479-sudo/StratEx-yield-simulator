@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build a localhost proposal-grade StratEx branded yield simulator dashboard with DeFiLlama-backed rate feeds, risk/news monitoring, and animated “agents working” feedback. The app is simulator-only and does not accept private keys or prepare live transactions.
+Build a localhost proposal-grade StratEx branded yield simulator dashboard with DeFiLlama-backed rate feeds, risk/news monitoring, and animated “agents working” feedback. The app is simulator-only and does not prepare live transactions or move funds.
 
 ## Scope
 

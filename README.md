@@ -1,23 +1,24 @@
 # StratEx Yield Simulator
 
-Local proposal dashboard for a StratEx branded DeFi yield simulator. This app is simulator-only: it does not accept private keys, prepare transactions, or deploy funds.
+Proposal-grade StratEx branded DeFi yield strategy simulator. The app models multi-position yield routes, market data quality, risk constraints, historical durability, execution friction, and allocation outcomes without creating transactions or moving funds.
 
 ## What It Does
 
-- Scans live DeFiLlama yield markets across Ethereum, Base, Arbitrum, and Optimism.
-- Supports `ETH`, `WETH`, `USDC`, `USDT`, `XRP`, `ARB`, `WBTC`, and `ADA`.
-- Builds multi-position simulated routes by risk tier:
-  - Low: blue-chip, single-asset, no-IL rows.
-  - Medium: curated mid/blue-chip protocols with multi-asset routes allowed.
-  - High: broader DeFiLlama discovery across minor markets and chains.
-- Deduplicates raw DeFiLlama source pools so one LP/vault cannot appear twice as fake diversification.
-- Uses canonical token-address proof plus known wrapper classifications instead of loose substring matching.
-- Fetches asset prices for USD notional normalization and reports token yield plus USD yield.
-- Shows TVL-weighted APY, 30-day context, base/reward split, gas/bridge/wrap friction, adapter assumptions, anomaly notifications, and a current-month DeFi exploit feed.
-- Separates advanced simulator workflows into top-level pages for route build, hard constraints, historical backtest, stress testing, rebalance analysis, and an exportable investment memo.
-- Pulls DeFiLlama pool chart history for simulated positions and uses it to score confidence, data quality, projected yield, volatility, and rebalance economics.
-- Lets the user apply route constraints such as minimum TVL, max allocation per protocol or chain, no-bridge routes, single-asset-only routes, and base-yield-only routes before strategy construction.
-- Blocks strategy simulation when market data is fallback or stale.
+- Scans live DeFiLlama yield markets for `ETH`, `WETH`, `USDC`, `USDT`, `XRP`, `ARB`, `WBTC`, and `ADA` across Ethereum, Base, Arbitrum, and Optimism.
+- Builds simulated multi-position routes for three risk modes:
+  - `Low`: blue-chip, single-asset, no-IL routes on battle-tested protocols.
+  - `Medium`: curated blue-chip and mid-tier opportunities with broader multi-asset routing.
+  - `High`: wider DeFiLlama discovery across eligible markets, chains, DEXs, vaults, and strategy platforms.
+- Targets realistic risk-adjusted yield bands instead of blindly maximizing headline APY.
+- Normalizes position sizing to USD notional, estimates token-denominated and USD-denominated yield, and includes gas, bridge, wrap/unwrap, approval, deposit, and timing friction.
+- Uses TVL-weighted rates, 30-day context, base/reward APY split, volatility, market depth, source freshness, and current-month DeFi exploit monitoring.
+- Applies hard allocator guardrails such as minimum TVL, no-bridge routing, single-asset-only routing, base-yield-only routing, max protocol allocation, and max chain allocation.
+- Deduplicates raw DeFiLlama pools, validates asset exposure with canonical token/address proof and known-wrapper metadata, and blocks simulations when market data is stale or fallback-only.
+- Provides top-level workspaces for route building, constraints, historical backtesting, stress testing, rebalance analysis, and an exportable investment memo.
+- Scores route confidence from liquidity depth, yield durability, diversification, execution friction, and route risk.
+- Generates stress scenarios for gas spikes, reward unwind, TVL drain, depeg assumptions, APY shocks, and bridge-delay risk.
+- Compares rebalance cadences after expected execution costs and observed volatility.
+- Presents a StratEx-style astronaut command dashboard with animated agent activity, anomaly notifications, protocol assumptions, position cards, source links, and current exploit awareness.
 
 ## Run Locally
 
