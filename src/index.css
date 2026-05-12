@@ -1,0 +1,70 @@
+:root {
+  --bg: #020814;
+  --bg-2: #061224;
+  --panel: rgba(7, 21, 38, 0.86);
+  --panel-solid: #071526;
+  --panel-soft: rgba(12, 39, 66, 0.62);
+  --line: rgba(120, 210, 255, 0.22);
+  --line-strong: rgba(120, 210, 255, 0.42);
+  --text: #d7e9f5;
+  --text-soft: #8fabbe;
+  --text-faint: #648299;
+  --cyan: #4ee8ff;
+  --blue: #2ea8ff;
+  --mint: #79f2c0;
+  --amber: #ffd166;
+  --red: #ff5d73;
+  --white: #f8fbff;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  --font-display: Orbitron, Rajdhani, Eurostile, 'Bank Gothic', system-ui, sans-serif;
+  --font-body: Inter, Sora, Avenir Next, system-ui, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, ui-monospace, monospace;
+
+  color: var(--text);
+  background: var(--bg);
+  font: 15px/1.45 var(--font-body);
+  letter-spacing: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(46, 168, 255, 0.16), transparent 30rem),
+    radial-gradient(circle at 80% 18%, rgba(121, 242, 192, 0.1), transparent 24rem),
+    linear-gradient(180deg, #020814 0%, #030b18 45%, #020814 100%);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}

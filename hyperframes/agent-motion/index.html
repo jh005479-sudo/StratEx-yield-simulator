@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StratEx Agent Motion</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        color: #d7e9f5;
+        background: #020814;
+        font-family: Inter, Sora, Avenir Next, system-ui, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #020814;
+      }
+
+      #stratex-agent-motion {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 46%, rgba(78, 232, 255, 0.18), transparent 330px),
+          radial-gradient(circle at 80% 20%, rgba(121, 242, 192, 0.11), transparent 300px),
+          linear-gradient(180deg, #041225 0%, #020814 100%);
+      }
+
+      .scene-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 110px 140px;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 0.76fr 1.24fr;
+        align-items: center;
+        gap: 80px;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(78, 232, 255, 0.09) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(78, 232, 255, 0.06) 1px, transparent 1px);
+        background-size: 80px 80px;
+        opacity: 0.66;
+      }
+
+      .headline {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .eyebrow {
+        width: max-content;
+        padding: 10px 16px;
+        border: 1px solid rgba(78, 232, 255, 0.48);
+        border-radius: 999px;
+        color: #4ee8ff;
+        font-size: 28px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 660px;
+        margin: 0;
+        color: #f8fbff;
+        font-family: Orbitron, Rajdhani, Eurostile, system-ui, sans-serif;
+        font-size: 104px;
+        line-height: 0.98;
+      }
+
+      .subcopy {
+        max-width: 640px;
+        color: #a8c7d9;
+        font-size: 34px;
+        line-height: 1.28;
+      }
+
+      .mission-board {
+        position: relative;
+        height: 720px;
+      }
+
+      .orbit {
+        position: absolute;
+        inset: 70px 120px;
+        border: 2px dashed rgba(78, 232, 255, 0.28);
+        border-radius: 50%;
+      }
+
+      .core {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 190px;
+        height: 190px;
+        transform: translate(-50%, -50%);
+        border: 2px solid rgba(121, 242, 192, 0.58);
+        border-radius: 26px;
+        display: grid;
+        place-items: center;
+        color: #79f2c0;
+        background: rgba(5, 32, 42, 0.92);
+        box-shadow: 0 0 72px rgba(121, 242, 192, 0.24);
+        font-family: Orbitron, Rajdhani, system-ui, sans-serif;
+        font-size: 42px;
+        font-weight: 900;
+      }
+
+      .node {
+        position: absolute;
+        width: 142px;
+        height: 92px;
+        border: 1px solid rgba(78, 232, 255, 0.42);
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        color: #d8f7ff;
+        background: rgba(5, 20, 36, 0.92);
+        box-shadow: 0 0 38px rgba(78, 232, 255, 0.16);
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      .node.base {
+        left: 70px;
+        top: 95px;
+      }
+
+      .node.arbitrum {
+        right: 52px;
+        top: 116px;
+      }
+
+      .node.risk {
+        right: 120px;
+        bottom: 76px;
+        color: #ffd166;
+      }
+
+      .node.vault {
+        left: 94px;
+        bottom: 84px;
+        color: #79f2c0;
+      }
+
+      .route {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 520px;
+        height: 3px;
+        transform-origin: left center;
+        background: linear-gradient(90deg, rgba(78, 232, 255, 0), #4ee8ff, rgba(121, 242, 192, 0));
+        box-shadow: 0 0 20px rgba(78, 232, 255, 0.42);
+      }
+
+      .route.r1 {
+        transform: rotate(214deg);
+      }
+
+      .route.r2 {
+        transform: rotate(324deg);
+      }
+
+      .route.r3 {
+        transform: rotate(38deg);
+      }
+
+      .route.r4 {
+        transform: rotate(145deg);
+      }
+
+      .packet {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 104px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(121, 242, 192, 0.42);
+        border-radius: 999px;
+        color: #79f2c0;
+        background: rgba(1, 20, 27, 0.94);
+        font-size: 18px;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stratex-agent-motion" data-composition-id="stratex-agent-motion" data-start="0" data-width="1920" data-height="1080" data-duration="8">
+      <div class="grid" data-layout-ignore></div>
+      <div class="scene-content">
+        <section class="headline">
+          <div class="eyebrow">TEST ENVIRONMENT</div>
+          <h1>Agents working across safe yield routes</h1>
+          <p class="subcopy">DeFiLlama feeds, gas checks, risk monitors, and multi-position deployment manifests converge before capital moves.</p>
+        </section>
+        <section class="mission-board">
+          <div class="orbit"></div>
+          <div class="route r1"></div>
+          <div class="route r2"></div>
+          <div class="route r3"></div>
+          <div class="route r4"></div>
+          <div class="node base">BASE</div>
+          <div class="node arbitrum">ARBITRUM</div>
+          <div class="node risk">RISK</div>
+          <div class="node vault">VAULT</div>
+          <div class="core">SX</div>
+          <div class="packet p1">AAVE</div>
+          <div class="packet p2">MORPHO</div>
+          <div class="packet p3">PENDLE</div>
+          <div class="packet p4">UNI</div>
+        </section>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const duration = 8;
+      const tl = gsap.timeline({ paused: true });
+
+      tl.from('.eyebrow', { y: 36, opacity: 0, duration: 0.55, ease: 'power3.out' }, 0);
+      tl.from('h1', { y: 52, opacity: 0, duration: 0.72, ease: 'power3.out' }, 0.15);
+      tl.from('.subcopy', { y: 36, opacity: 0, duration: 0.62, ease: 'power3.out' }, 0.34);
+      tl.from('.mission-board', { scale: 0.92, opacity: 0, duration: 0.75, ease: 'power2.out' }, 0.2);
+      tl.from('.route', { scaleX: 0, opacity: 0, duration: 0.7, stagger: 0.09, ease: 'power2.out' }, 0.82);
+      tl.from('.node', { y: 22, opacity: 0, duration: 0.42, stagger: 0.08, ease: 'power2.out' }, 1.0);
+      tl.from('.core', { scale: 0.62, opacity: 0, duration: 0.48, ease: 'back.out(1.7)' }, 1.18);
+
+      const packetMotion = [
+        ['.p1', -355, -212, 0],
+        ['.p2', 340, -190, 0.28],
+        ['.p3', 312, 215, 0.56],
+        ['.p4', -338, 220, 0.84],
+      ];
+
+      packetMotion.forEach(([selector, x, y, delay]) => {
+        tl.fromTo(
+          selector,
+          { x: 0, y: 0, opacity: 0, scale: 0.8 },
+          {
+            x,
+            y,
+            opacity: 1,
+            scale: 1,
+            duration: 0.72,
+            repeat: Math.floor(duration / 1.6) - 1,
+            yoyo: true,
+            ease: 'power1.inOut',
+          },
+          1.58 + delay,
+        );
+      });
+
+      tl.to('.core', { scale: 1.08, duration: 0.42, repeat: 10, yoyo: true, ease: 'power1.inOut' }, 1.7);
+      tl.to('.headline', { y: -24, opacity: 0, duration: 0.44, ease: 'power2.in' }, 7.35);
+      tl.to('.mission-board', { scale: 1.04, opacity: 0, duration: 0.44, ease: 'power2.in' }, 7.4);
+
+      window.__timelines['stratex-agent-motion'] = tl;
+    </script>
+  </body>
+</html>
